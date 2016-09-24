@@ -31,12 +31,12 @@ public class Dictionary implements Serializable{
         return key.size();
     }
 
-    //получаем значение по индексу
+    //получаем ключ по индексу
     public ComplexType getKey(int q){
         return key.get(q);
     }
 
-    //получаем ключ по индексу
+    //получаем значение по индексу
     public double getValue(int q){
         return value.get(q);
     }
