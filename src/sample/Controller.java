@@ -33,11 +33,16 @@ public class Controller {
     @FXML
     private TextField insertField;
 
-
+    //определяем словарь
     Dictionary mp = new Dictionary();
+
+    //назначаем исполнителя
     ExecutorService es = Executors.newCachedThreadPool();
+
+    //устанавливаем доступ одного потока
     Semaphore sm = new Semaphore(1);
 
+    //обновление текущего времени
     protected AnimationTimer at = new AnimationTimer() {
         @Override
         public void handle(long now) {
@@ -49,6 +54,7 @@ public class Controller {
 
         insertField.setTooltip(new Tooltip("Insert value"));
 
+        //запускаем на исполнение показ текущего времени
         es.submit(new Runnable() {
             @Override
             public void run() {
@@ -58,6 +64,7 @@ public class Controller {
 
     }
 
+    //метод события кнопки addButton
     public void actionAddButton(ActionEvent actionEvent) {
         //Число с текстового поля
         int q = Integer.parseInt(insertField.getText());
@@ -77,10 +84,13 @@ public class Controller {
         final Task task1 = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                //доступ для одного потока
                 sm.acquire();
 
 
                 int max = dictionary.size();
+
+                //сортируем словарь
                 dictionary.sort();
 
 
@@ -121,10 +131,12 @@ public class Controller {
 
         };
 
+        //запуск добавления
         es.submit(task);
 
         //es.submit(task1);
 
+        //запуск сериализации
         Service service=new Service<Void>() { @Override
         protected Task createTask() { return task1;
         }};
@@ -132,9 +144,15 @@ public class Controller {
 
     }
 
+    //метод события кнопки removeButton
     public void actionRemoveButton(ActionEvent actionEvent) {
+        //Считываем число с текстового поля
         int q = Integer.parseInt(insertField.getText());
+
+        //создаем копию словаря
         Dictionary dictionary = new Dictionary(mp);
+
+        //процесс удаления записей
         final Task task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -145,12 +163,18 @@ public class Controller {
                 return null;
             }
         };
+
+        //процесс сериализации
         final Task task1 = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 sm.acquire();
+
                 int max = dictionary.size();
+
+                //сортируем словарь
                 dictionary.sort();
+
                 FileOutputStream fos = new FileOutputStream("temp.out");
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 Thread.sleep(10000);
@@ -187,8 +211,10 @@ public class Controller {
 
         };
 
+        //запуск удаления
         es.submit(task);
 
+        //запуск сериализации
         Service service = new Service<Void>() {
             @Override
             protected Task createTask() {
@@ -199,6 +225,7 @@ public class Controller {
 
     }
 
+    //метод обновления текущего времени
     private void longProcess2() {
 
         Locale local = new Locale("ru", "RU");
