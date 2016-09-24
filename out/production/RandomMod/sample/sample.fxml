@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<VBox prefHeight="435.0" prefWidth="454.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+  <children>
+    <AnchorPane prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <Label fx:id="timeLabel" layoutX="60.0" layoutY="46.0" prefHeight="41.0" prefWidth="196.0" text="Label" />
+        <TextField fx:id="insertField" layoutY="14.0" prefHeight="21.0" prefWidth="291.0" AnchorPane.leftAnchor="60.0" />
+      </children>
+      <VBox.margin>
+        <Insets top="50.0" />
+      </VBox.margin>
+    </AnchorPane>
+    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <children>
+        <AnchorPane minHeight="103.0" minWidth="131.0" prefHeight="122.0" prefWidth="157.0" HBox.hgrow="ALWAYS">
+          <children>
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#actionAddButton" prefHeight="54.75" prefWidth="79.0" text="Add" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="33.25" />
+          </children>
+          <padding>
+            <Insets />
+          </padding>
+        </AnchorPane>
+        <AnchorPane minWidth="164.0" prefHeight="121.0" prefWidth="164.0" HBox.hgrow="ALWAYS">
+          <children>
+            <Button fx:id="removeButton" mnemonicParsing="false" onAction="#actionRemoveButton" prefHeight="68.5" prefWidth="103.0" text="Remove" AnchorPane.bottomAnchor="33.25" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="33.25" />
+          </children>
+        </AnchorPane>
+      </children>
+      <VBox.margin>
+        <Insets top="20.0" />
+      </VBox.margin>
+    </HBox>
+    <AnchorPane minHeight="95.0" prefHeight="168.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
+      <children>
+        <ProgressBar fx:id="progressBar" prefHeight="14.0" prefWidth="339.5" progress="0.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="57.25" AnchorPane.rightAnchor="57.25" AnchorPane.topAnchor="21.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
